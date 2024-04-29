@@ -1,0 +1,83 @@
+<% console.log("Rendering template: C:\Users\HP\Desktop\MyProject\views\admin\categoryedit.ejs"); %>
+<%- include ('../partials/adminHeader') %>
+<section class="content-main" >
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 mt-60">
+        <div>
+          <h2 class="content-title card-title">Edit Category</h2>
+        </div>
+        <% if (error) { %>
+          <p class="text-danger"><%= error %></p>     
+        <% } %>
+        <form method="post" action="/updateCategory/<%= category[0]._id %>" onsubmit="return validateForm()">
+          <div class="mb-4">
+            <label for="product_name" class="form-label">Name</label>
+            <input type="text"  name="categoryName" class="form-control border" value="<%= category[0].name%>" id="cat_name" />
+            <div id="categoryName-error" class="text-danger"></div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Description</label>
+            <textarea name="description" id="cat_description" class="form-control border"><%= category[0].description %></textarea>
+            <div id="description-error" class="text-danger"></div>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Update category</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="main-footer font-xs">
+  <div class="row pb-30 pt-15">
+      <div class="col-sm-6">
+          <script>
+          document.write(new Date().getFullYear())
+          </script> ©, Evara - HTML Ecommerce Template .
+      </div>
+      <div class="col-sm-6">
+          <div class="text-sm-end">
+              All rights reserved
+          </div>
+      </div>
+  </div>
+</footer>
+</main>
+<script src="/public/admin-assets/js/vendors/jquery-3.6.0.min.js"></script>
+<script src="/public/admin-assets/js/vendors/bootstrap.bundle.min.js"></script>
+<script src="/public/admin-assets/js/vendors/select2.min.js"></script>
+<script src="/public/admin-assets/js/vendors/perfect-scrollbar.js"></script>
+<script src="/public/admin-assets/js/vendors/jquery.fullscreen.min.js"></script>
+
+<script>
+
+
+function validateForm() {
+        const categoryName = document.getElementById('cat_name').value.trim();
+        const description = document.getElementById('cat_description').value.trim();
+        const alphabetRegex =  /^[a-zA-Z.\s]+$/;
+
+        if (!categoryName) {
+            document.getElementById('categoryName-error').innerText = 'Name is required';
+            return false;
+        } else if (!alphabetRegex.test(categoryName)) {
+            document.getElementById('categoryName-error').innerText = "Category Name should contain only alphabets";
+            return false;
+        } 
+        
+        else {
+            document.getElementById('categoryName-error').innerText = '';
+        }
+
+        if (!description) {
+            document.getElementById('description-error').innerText = 'Description is required';
+            return false;
+        } else {
+            document.getElementById('description-error').innerText = '';
+        }
+
+        return true;
+    }
+
+</script>

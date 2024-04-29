@@ -1,0 +1,161 @@
+<%- include ('../partials/userHeader') %>
+<main>
+<div class="page-header breadcrumb-wrap">
+  <div class="container">
+      <div class="breadcrumb">
+          <a href="/" rel="nofollow">Home</a>
+          <span></span> Wishlist
+          <span></span> 
+      </div>
+  </div>                                                                                    
+</div>
+
+<section class="mt-50 mb-50">
+  <div class="container">
+      <div class="row">
+          <div class="col-12">
+              <div class="table-responsive">
+                  <table class="table shopping-summery text-center">
+                      <thead>
+                          <tr class="main-heading">
+                              <th scope="col" colspan="2">Product</th>
+                              <th scope="col">Price</th>
+                              <th scope="col">Stock Status</th>
+                              <th scope="col">Action</th>
+                              <th scope="col">Remove</th>
+                          </tr>
+                      </thead>
+
+                      
+                      <tbody>
+                        <% if (!wishlist || wishlist.items.length === 0) { %>
+                          <tr>
+                            <td colspan="6" class="text-center text-danger">Your wishlist is empty</td>
+                          </tr>
+                        <% } else { %>
+                          <% wishlist.items.forEach(item => { %>
+                          <tr id="<%= item._id %>" >
+                              <td class="image product-thumbnail"><img src="/public/photos/productImages/<%= item.product.productImage[0] %>" alt="#"></td>
+                              <td class="product-des product-name">
+                                  <h5 class="product-name"><a href="shop-product-right.html"><%= item.product.productName %></a></h5>
+                                  
+                                  
+                              </td>
+                              <td class="price" data-title="Price"><span><%= item.product.regularPrice %></span></td>
+                              <td class="text-center" data-title="Stock">
+                                  <span class="color3 font-weight-bold">In Stock:<%= item.product.inStock %></span>
+                                    
+                              </td>
+                              <td class="text-right" data-title="Cart">
+                              
+                                <% if (cartItemIds.includes(item.product._id.toString())) { %>
+                                    <a href="/cartpage" style="background-color: rgb(207, 137, 46);" class="btn btn-sm"><i class="fi-rs-shopping-bag mr-5"></i>View in Cart</a>
+                                  <% } else { %>
+                                    <button onclick="addItemToCart('<%= item.product._id %>')" class="btn btn-sm"><i class="fi-rs-shopping-bag mr-5"></i>Add to Cart</button>
+                                  <% } %>
+                                  
+                              </td>
+                              <td class="action" data-title="Remove">
+                               
+                                   <a href="#" onclick="removeItem('<%= item._id %>')" >
+                                     <i class="fi-rs-trash"></i>
+                                   </a>
+                              </td>
+                          </tr>
+                          <% }); %>
+                          <% } %>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+
+
+
+function addItemToCart(productId) {
+    fetch(`/addToCart?productId=${productId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ productId: productId })
+    })
+    .then(response => {
+        if (!response.ok) {
+       
+            return response.json().then(data => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'OOPS...',
+                    text: data.message
+                });
+            }); 
+        } 
+        else {
+            
+            window.location.reload();
+        }
+    })
+    .catch(error => {
+        console.error('Error adding product to cart:', error);
+    });
+}
+
+
+
+function removeItem(itemId) {
+    swal.fire({
+        title: 'Are you sure?',
+        text: 'You won\'t be able to revert this!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+    fetch(`/removeWishList?itemId=${itemId}`, {
+        method: 'DELETE',
+    })
+    .then(response => {
+        if (response.ok) {
+
+            // Item successfully removed, update the UI (remove the item from the DOM)
+            const itemToRemove = document.getElementById(itemId);
+            itemToRemove.remove();
+
+            return response.json().then(data => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'DONE...',
+                    text: data.message
+                });
+            }); 
+
+        } else {
+            return response.json().then(data => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'OOPS...',
+                    text: data.message
+                });
+            }); 
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+       
+    });
+}
+});
+}
+
+
+</script>
+<%- include ('../partials/userFooter') %>

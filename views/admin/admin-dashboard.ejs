@@ -1,0 +1,707 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<!-- Mirrored from wp.alithemes.com/html/evara/evara-backend/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Aug 2021 15:32:35 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title>Evara Dashboard</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/public/admin/assets/imgs/theme/favicon.svg">
+    <!-- Template CSS -->
+    <link href="/public/admin/assets/css/main.css" rel="stylesheet" type="text/css" />
+    
+    
+</head>
+
+<body>
+    
+    <div class="screen-overlay"></div>
+    <aside class="navbar-aside" id="offcanvas_aside">
+        <div class="aside-top">
+            <a href="index.html" class="brand-wrap">
+                <img src="/public/admin/assets/imgs/theme/logo.svg" class="logo" alt="Evara Dashboard">
+            </a>
+            <div>
+                <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i> </button>
+            </div>
+        </div>
+        <nav>
+            <ul class="menu-aside">
+                <li class="menu-item active">
+                    <a class="menu-link" href="/admindashboard"> <i class="icon material-icons md-home"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/productlist"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Products</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/categorylist"> <i class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">Category</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/customerlist"> <i class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">Customers</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/couponlist"> <i class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">Coupons</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/orderlist"> <i class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">Order Management</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/bestSellings"> <i class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">Best Sellings</span>
+                    </a>
+                </li>
+            </ul>
+            <hr>
+            <br>
+            <br>
+        </nav>
+    </aside>
+
+    
+    <main class="main-wrap">
+        <header class="main-header navbar">
+            <div class="col-search">
+                <form class="searchform">
+                    <div class="input-group">
+                        <input list="search_terms" type="text" class="form-control" placeholder="Search term">
+                        <button class="btn btn-light bg" type="button"> <i class="material-icons md-search"></i></button>
+                    </div>
+                    <datalist id="search_terms">
+                        <option value="Products">
+                        <option value="New orders">
+                        <option value="Apple iphone">
+                        <option value="Ahmed Hassan">
+                    </datalist>
+                </form>
+            </div>
+            <div class="col-nav">
+                <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"> <i class="material-icons md-apps"></i> </button>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a href="/logout">
+                            <i class="fas fa-sign-out-alt text-danger"> Logout</i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon" href="#">
+                            <i class="material-icons md-notifications animation-shake"></i>
+                            <span class="badge rounded-pill">3</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="requestfullscreen nav-link btn-icon"><i class="material-icons md-cast"></i></a>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownLanguage" aria-expanded="false"><i class="material-icons md-public"></i></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLanguag3q1e">
+                            <a class="dropdown-item text-brand" href="#"><img src="/public/admin/assets/imgs/theme/flag-us.png" alt="English">English</a>
+                            <a class="dropdown-item" href="#"><img src="/public/admin/assets/imgs/theme/flag-fr.png" alt="Français">Français</a>
+                            <a class="dropdown-item" href="#"><img src="/public/admin/assets/imgs/theme/flag-jp.png" alt="Français">日本語</a>
+                            <a class="dropdown-item" href="#"><img src="/public/admin/assets/imgs/theme/flag-cn.png" alt="Français">中国人</a>
+                        </div>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false"> <img class="img-xs rounded-circle" src="/public/admin/assets/imgs/people/avatar2.jpg" alt="User"></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
+                            <a class="dropdown-item" href="#"><i class="material-icons md-perm_identity"></i>Edit Profile</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-settings"></i>Account Settings</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-account_balance_wallet"></i>Wallet</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-receipt"></i>Billing</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-help_outline"></i>Help center</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="#"><i class="material-icons md-exit_to_app"></i>Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <section class="content-main">
+            <div class="content-header">
+                <div>
+                    <h2 class="content-title card-title">Dashboard </h2>
+                    <p>Whole data about your business here</p>
+                </div>
+                
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="card card-body mb-4">
+                        <article class="icontext">
+                            <span class="icon icon-sm rounded-circle bg-primary-light"><i class="text-primary material-icons md-monetization_on"></i></span>
+                            <div class="text">
+                                <h6 class="mb-1 card-title">Orders Revenue</h6>
+                                <% const totalSum = allOrders.reduce((acc, order) => acc + order.totalPrice, 0); %>
+                                <span>₹&nbsp;<%= totalSum %></span>
+                                
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card card-body mb-4">
+                        <article class="icontext">
+                            <span class="icon icon-sm rounded-circle bg-success-light"><i class="text-success material-icons md-local_shipping"></i></span>
+                            <div class="text">
+                                <h6 class="mb-1 card-title">Orders</h6>
+                                 
+                                <span> <%= allOrders.length; %></span>
+                                
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card card-body mb-4">
+                        <article class="icontext">
+                            <span class="icon icon-sm rounded-circle bg-warning-light"><i class="text-warning material-icons md-qr_code"></i></span>
+                            <div class="text">
+                                <h6 class="mb-1 card-title">Products</h6> 
+                                <span><%= allProducts.length; %></span>
+                                
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card card-body mb-4">
+                        <article class="icontext">
+                            <span class="icon icon-sm rounded-circle bg-info-light"><i class="text-info material-icons md-person"></i></span>
+
+                            <div class="text">
+                                <h6 class="mb-1 card-title">Customers</h6> 
+                                <span><%= allUsers.length; %></span>
+                                
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+              
+                <div class="col-xl-8 col-lg-12">
+                  <div class="card mb-4">
+                    <article class="card-body">
+                      <h5 class="card-title">Sales Statistics</h5>
+                      <canvas id="monthlyChart" height="120px"></canvas>
+                    </article>
+                  </div>
+                </div>
+
+                <div class="col-xl-4 col-lg-12">
+                  <div class="card mb-4">
+                    <article class="card-body">
+                      <h5 class="card-title">Order Statuses</h5>
+                      <input type="hidden" id="orderStatus">
+                      <canvas id="myChart2" height="217"></canvas>
+                    </article>
+                  </div>
+                </div>
+
+                
+                
+                
+            </div>
+         
+            <div class="card mb-4">
+                <header class="card-header">
+                    <h2 class="card-title">Sales report</h2>
+                    <div class="row align-items-center">
+                        <div class="col-md-3 col-12 me-auto mb-md-0 mb-3">
+
+                            <div class="custom_select">
+                                <select id="reportType" >
+
+                                     <option value="yearly" selected>Yearly Report</option>
+                                     <option value="weekly">Weekly Report</option>
+                                     <option value="daily">Daily report</option>
+                                     <option value="custom">Custom Range</option>
+                                
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-2 col-6">
+                            <h5>Start date:</h5>
+                            <input type="date" id="startDate" class="form-control" max="<%= currentDate %>">
+                        </div>
+                        <div class="col-md-2 col-6">
+                            <h5>End date:</h5>
+                            <input type="date" id="endDate" class="form-control" value="<%= new Date().toISOString().split('T')[0] %>" max="<%= currentDate %>">
+                        </div>
+
+                        <div >
+                            <a id="generateReportBtn"  class="btn btn-primary"><i class="text-muted material-icons md-post_add"></i>Create report</a>
+                            
+                        </div>
+                    </div>
+                </header>
+
+                <div id="reportContainer" class="card-body">
+                    <div class="table-responsive">
+                        <table  class="table align-middle table-nowrap mb-0">
+                            <thead class="table-light">
+                                <tr>                             
+                                    <th class="align-middle" scope="col">Order ID</th>
+                                    <th class="align-middle" scope="col">Billing Name</th>
+                                    <th class="align-middle" scope="col">Date</th>
+                                    <th class="align-middle" scope="col">Total</th>
+                                    <th class="align-middle" scope="col">Coupon Deduction</th>
+                                    <th class="align-middle" scope="col">Payment Status</th>
+                                    <th class="align-middle" scope="col">Payment Method</th>
+                                    <th class="align-middle" scope="col">Items</th>
+                                </tr>
+                            </thead>
+                            <tbody class="tBody">
+
+                            </tbody>                            
+                        </table>
+                    </div> 
+                </div>
+
+                <div id="dwnldButtons" style="display: none;">
+                    <button id="downloadPdfBtn" class="btn btn-primary">Download PDF</button>
+                    <button id="downloadExcelBtn" class="btn btn-primary">Download Excel</button>
+                </div>
+
+            </div>
+
+
+            
+        </section> <!-- content-main end// -->
+        <footer class="main-footer font-xs">
+            <div class="row pb-30 pt-15">
+                <div class="col-sm-6">
+                    <script>
+                    document.write(new Date().getFullYear())
+                    </script> ©, Evara - HTML Ecommerce Template .
+                </div>
+                <div class="col-sm-6">
+                    <div class="text-sm-end">
+                        All rights reserved
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="/public/admin/assets/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="/public/admin/assets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="/public/admin/assets/js/vendors/select2.min.js"></script>
+    <script src="/public/admin/assets/js/vendors/perfect-scrollbar.js"></script>
+    <script src="/public/admin/assets/js/vendors/jquery.fullscreen.min.js"></script>
+    <script src="/public/admin/assets/js/vendors/chart.js"></script>
+    <!-- Main Script -->
+    <script src="/public/admin/assets/js/main.js" type="text/javascript"></script>
+   
+
+    <!-- html2canvas CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- jsPDF CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- XLSX CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+   
+
+    
+
+    
+    
+<script>
+
+
+window.onload = function () {
+    fetch('/showcart', {
+      method: 'post',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ msg: "hi" })
+    })
+      .then(response => response.json())
+      .then(data => {
+
+        console.log("Data received from server:", data); 
+
+        if (data.monthlySalesData && data.dailySalesData && data.eachOrderStatusCount) {
+          console.log("Monthly Sales Data:", data.monthlySalesData);
+          console.log("Daily Sales Data:", data.dailySalesData);
+          console.log("Order Statuses Data:", data.eachOrderStatusCount);
+  
+          // Call the chart function for line charts
+          chart(data.monthlySalesData, data.dailySalesData);
+  
+          // Call a separate function for the pie chart
+          pieChart(data.eachOrderStatusCount);
+        } else {
+          console.error("Incomplete data received from server.");
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }
+  
+  function chart(monthlySalesData, dailySalesData) {
+   
+    const allMonths = Array.from({ length: 12 }, (_, i) => i + 1); 
+    
+    // Create a map of month to total sales amount
+    const monthlyDataMap = new Map(monthlySalesData.map(item => [item._id.month, item.totalAmount]));
+  
+    // Fill in missing months with zero sales
+    const monthlyDataFilled = allMonths.map(month => ({
+      month,
+      totalAmount: monthlyDataMap.get(month) || 0
+    }));
+  
+    //DATAS FOR DAILY SALES
+    var dailyData = dailySalesData.map(item => item.totalAmount)  
+    var dailyLabels = dailySalesData.map(item => {
+                          
+                          const date = new Date(2024, 3, item._id.day); 
+                          return date.toLocaleDateString('en-US', {
+                            year: 'numeric', 
+                            month: '2-digit', 
+                            day: '2-digit'
+                          });
+                      })
+
+
+    //DATAS FOR MONTHLY SALES
+    var MonthlyData = monthlyDataFilled.map(item => item.totalAmount) 
+    var MonthlyLabels = monthlyDataFilled.map(item => getMonthName(item.month)) 
+    
+                      
+    // Monthly sales chart
+    if ($('#monthlyChart').length) {
+
+      var monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
+      var monthlyChart = new Chart(monthlyCtx, {
+
+     
+
+        type: 'line',
+        data: {
+          labels: MonthlyLabels,
+          datasets: [
+            {
+            label: 'Monthly Sales',
+            backgroundColor: 'rgba(44, 120, 220, 0.2)',
+            borderColor: 'rgba(44, 120, 220)',
+            data: MonthlyData,
+            hidden: false
+            
+ 
+            },
+
+            {
+            label: 'Daily Sales',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132)',
+            data: dailyData,
+            // Use different labels for the second dataset
+            labels: dailyLabels,
+            hidden: true
+            }
+          ]
+        },
+        options: {
+          plugins: {
+            legend: {
+              labels: {
+                usePointStyle: true
+              } 
+            }
+          }
+        }
+      });
+
+
+
+              // Add click event listener to the legend
+            monthlyChart.legend.options.onClick = function(event, legendItem) {
+            if (legendItem.text === 'Monthly Sales') {
+              monthlyChart.data.datasets[1].hidden = true;
+              monthlyChart.data.datasets[0].hidden = false;
+              monthlyChart.data.labels = MonthlyLabels;
+            } else if (legendItem.text === 'Daily Sales') {
+              // Toggle visibility of the second dataset
+              monthlyChart.data.datasets[0].hidden = true;
+              monthlyChart.data.datasets[1].hidden = false;
+              monthlyChart.data.labels = dailyLabels;
+            }
+            monthlyChart.update();
+          };
+        
+      
+
+    }
+  
+  
+  
+  
+  // Function to get month name from month number
+  function getMonthName(month) {
+    const months = [
+      'January', 'February', 'March', 'April',
+      'May', 'June', 'July', 'August',
+      'September', 'October', 'November', 'December'
+    ];
+    return months[month - 1]; // Adjust index to match month number
+  }
+  
+  
+}
+
+
+
+  
+      function pieChart(eachOrderStatusCount) {
+        if ($('#myChart2').length) {
+          var statusLabels = Object.keys(eachOrderStatusCount);
+          var statusData = Object.values(eachOrderStatusCount);
+  
+          var ctx = document.getElementById('myChart2').getContext('2d');
+          var myChart2 = new Chart(ctx, {
+            type: 'pie',
+            data: {
+              labels: statusLabels,
+              datasets: [{
+                data: statusData,
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.7)',
+                  'rgba(54, 162, 235, 0.7)',
+                  'rgba(255, 206, 86, 0.7)',
+                  'rgba(75, 192, 192, 0.7)',
+                  'rgba(153, 102, 255, 0.7)',
+                  'rgba(255, 159, 64, 0.7)'
+                ],
+                borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              plugins: {
+                legend: {
+                  display: true,
+                  position: 'right'
+                }
+              }
+            }
+          });
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+document.addEventListener('DOMContentLoaded', () => {
+    
+    const reportTypeSelect = document.getElementById('reportType');
+    const startDateInput = document.getElementById('startDate');
+    const endDateInput = document.getElementById('endDate');
+    const generateReportBtn = document.getElementById('generateReportBtn');
+    const reportContainer = document.getElementById('reportContainer');
+    
+
+    reportTypeSelect.addEventListener('change', () => {
+        
+        const selectedReportType = reportTypeSelect.value;
+        console.log('Report type selected:', selectedReportType);
+        if (selectedReportType === 'yearly') {
+
+            // Set start date to January 1st of the current year
+            console.log('Setting start date to January 1st of the current year');
+            startDateInput.value = new Date(new Date().getFullYear(), 0, 1).toISOString().split('T')[0];
+            console.log('Start date set to:', startDateInput.value);
+
+        } else if (selectedReportType === 'weekly') {
+
+            // Set start date to the beginning of the current week (Sunday)
+            const today = new Date();
+            const startOfWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() - today.getDay());
+            startDateInput.value = startOfWeek.toISOString().split('T')[0];
+
+        } else if (selectedReportType === 'daily') {
+
+            // Set start date to yesterday
+            const yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+            startDateInput.value = yesterday.toISOString().split('T')[0];
+        }
+        endDateInput.value = new Date().toISOString().split('T')[0]
+    });
+
+    generateReportBtn.addEventListener('click', () => {
+
+        const startDate = startDateInput.value;
+        console.log('startdate',startDate);
+        const endDate = endDateInput.value;
+        console.log('enddate',endDate);
+        const url = `/generateReport?startDate=${startDate}&endDate=${endDate}`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+
+                              
+                const tableBody = reportContainer.querySelector('tBody');
+                tableBody.innerHTML = '';
+
+                
+                data.forEach(order => {
+                    
+                    const productNames = order.items.map(item => item.product.productName);
+                    const productsString = productNames.join(', ');
+
+                    tableBody.innerHTML += `
+                        <tr>
+                            
+                            <td><a href="#" class="fw-bold">${order._id.toString().substring(order._id.toString().length - 5)}</a> </td>
+                            <td>${order.billingDetails.name}</td>
+                            <td>${order.orderDate.split('T')[0]}</td>
+                            <td>₹&nbsp;${order.totalPrice.toFixed(2)}</td>
+                            <td>₹&nbsp;${order.discount.toFixed(2)}</td>
+                            <td>
+                                <span class="badge badge-pill badge-soft-success">${order.paymentStatus}</span>
+                            </td>
+                            <td>
+                                <i class="material-icons md-payment font-xxl text-muted mr-5"></i> ${order.paymentMethod}
+                            </td>
+                            <td>${productsString}</td>
+                        </tr>`;
+                });
+
+
+                // Calculate summary
+                const totalOrders = data.length;
+                const totalRevenue = data.reduce((acc, order) => acc + order.totalPrice, 0);
+                const totalDiscount = data.reduce((acc, order) => acc + order.discount, 0);
+
+                // Add summary row to table
+                tableBody.innerHTML += `
+                <br>
+                    <tr>
+                        <td colspan="3" class="fw-extra-bold">Summary:</td>
+                        <td class="fw-extra-bold">₹&nbsp;${totalRevenue.toFixed(2)}</td>
+                        <td class="fw-extra-bold">₹&nbsp;${totalDiscount.toFixed(2)}</td>
+                        <td colspan="3" class="fw-extra-bold">${totalOrders} orders</td>
+                    </tr>`;
+
+                // Show the download buttons
+                const downloadButtonsDiv = document.getElementById('dwnldButtons');
+                downloadButtonsDiv.style.display = 'block';
+
+                //DOWNLOAD REPORT IN PDF--------------------------------------------------------------------
+                const downloadPdfBtn = document.getElementById('downloadPdfBtn');
+                const downloadExcelBtn = document.getElementById('downloadExcelBtn');
+
+                downloadPdfBtn.addEventListener('click', downloadPdf);
+                downloadExcelBtn.addEventListener('click', downloadExcel);
+
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    });
+
+
+        // Get the current start date value
+        let currentStartDate = new Date(startDateInput.value);
+
+        endDateInput.addEventListener('change', function() {
+        let endDate = new Date(this.value);
+        if (endDate < currentStartDate) {
+            Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'End date cannot be earlier than start date.',
+            });
+        this.value = startDateInput.value;
+        }});
+
+        startDateInput.addEventListener('change', function() {
+        currentStartDate = new Date(this.value);
+        if (currentStartDate > new Date(endDateInput.value)) {
+            endDateInput.value = this.value;
+        }});
+});    
+
+
+
+function downloadPdf() {
+    html2canvas(document.getElementById("reportContainer")).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jspdf.jsPDF({
+            orientation: "landscape",
+            unit: "pt",
+            format: [canvas.width, canvas.height]
+        });
+        const imgHeight = (canvas.width / pdf.internal.pageSize.getWidth()) * pdf.internal.pageSize.getHeight();
+        pdf.addImage(imgData, 'PNG', (pdf.internal.pageSize.getWidth() - canvas.width) / 2, 10, canvas.width, imgHeight);
+
+        pdf.save("report.pdf");
+    });
+}
+
+function downloadExcel() {
+    const element = document.getElementById('reportContainer');
+    const wb = XLSX.utils.table_to_book(element);
+    XLSX.writeFile(wb, 'report.xlsx');
+}
+
+
+
+
+    </script>
+</body>
+
+
+<!-- Mirrored from wp.alithemes.com/html/evara/evara-backend/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Aug 2021 15:32:57 GMT -->
+</html>

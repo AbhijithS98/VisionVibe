@@ -1,0 +1,312 @@
+<%- include ('../partials/userHeader') %>
+
+<main class="main">
+  <div class="page-header breadcrumb-wrap">
+      <div class="container">
+          <div class="breadcrumb">
+              <a href="/" rel="nofollow">Home</a>
+              <span></span> ProductView
+              <span></span> Cart
+          </div>
+      </div>
+  </div>
+  <section class="mt-50 mb-50">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <div class="table-responsive">
+                      <table class="table shopping-summery text-center clean">
+                          <thead>
+                              <tr class="main-heading">
+                                  <th scope="col">Product Image</th>
+                                  <th scope="col">Product Name</th>
+                                  <th scope="col">Price</th>
+                                  <th scope="col">Quantity</th>
+                                  <th scope="col">Subtotal</th>
+                                  <th scope="col">Remove</th>
+                              </tr>
+                          </thead>                       
+                          <tbody>
+                            
+                            <% if (!cart || cart.items.length === 0) { %>
+                                <tr>
+                                    <td colspan="6" class="text-center "><h4 class="text-warning"><strong>Your Cart is empty</strong></h4></td>
+                                  </tr>
+                                <% } else { %>
+
+                              
+                              <% cart.items.forEach((prod)=> { %>
+                              <tr id="<%= prod._id %>">
+
+                                 
+
+                                    <td class="image product-thumbnail"><img src="/public/photos/productImages/<%= prod.product.productImage[0] %>" alt="image"></td>
+                                    
+                                    <td class="product-des product-name">
+                                      <h5 class="product-name"><a href=""></a><%= prod.product.productName  %></h5>
+                                      <% if (prod.product.inStock === 0) { %>
+                                        <span class="text-danger">Currently Out Of Stock</span>
+                                      <% } %>
+                                    </td>
+                                    
+                                    <td class="price" data-title="Price"><span><%= prod.price  %></span></td>
+                                   
+                                    <td class="text-center" >
+                                      <!-- <div class="detail-qty border radius  m-auto"> -->
+                                        <button class="qty-down" data-user-id="<%= user._id  %>" data-product-id="<%= prod.product._id %>">-</button>
+
+                                        <span class="qty-val" data-product-id="<%= prod.product._id %>"> <%= prod.quantity  %> </span>
+
+                                        <button class="qty-up" data-product-stock="<%= prod.product.inStock %>" data-user-id="<%= user._id  %>" data-product-id="<%= prod.product._id %>">+</button>
+                                      <!-- </div> -->
+                                    </td>
+
+                                    <td class="text-right" data-title="Cart">
+                                    <span class="sub-total" data-product-id="<%= prod.product._id %>" ><%= (prod.price * prod.quantity).toFixed(2) %></span>
+                                    </td>
+                                    
+                                    <td class="action" data-title="Remove">                                 
+                                        <i class="fi-rs-trash" onclick="removeProduct('<%= prod.product._id %>')" ></i>          
+                                    </td>
+                                    
+                              </tr>
+                              <% }) %>
+                              
+                              <% } %>                   
+                          </tbody>
+                          
+                      </table>
+                  </div>
+                  <div class="cart-action text-end">
+                      <a class="btn" href="/shoplist" ><i class="fi-rs-shopping-bag mr-10"></i>Continue Shopping</a>
+                  </div>
+                  <div class="divider center_icon mt-50 mb-50"><i class="fi-rs-fingerprint"></i></div>
+                  <div class="row mb-50">
+                     
+                      <div class="col-lg-6 offset-lg-6  col-md-12">
+                          <div class="border p-md-4 p-30 border-radius cart-totals">
+                              <div class="heading_s1 mb-3">
+                                  <h4>Cart Totals</h4>
+                              </div>
+                              <% if (!cart || cart.items.length === 0) { %>
+                                <div class="table-responsive">
+                                    <table class="table">            
+                                        <tbody>
+                                            <tr>
+                                                <td class="cart_total_label">Cart Subtotal</td>
+                                                <td class="cart_total_amount"><span class="font-lg fw-900 text-brand">₹0</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="cart_total_label">Shipping</td>
+                                                <td class=""> <i class="ti-gift mr-5"></i> Free Shipping</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="cart_total_label">Total</td>
+                                                <td class="cart_total_amount"><strong><span class="font-xl fw-900 text-brand">₹0</span></strong></td>
+                                            </tr>                                       
+                                        </tbody>                         
+                                    </table>
+                                    <button class="btn" disabled> <i class="fi-rs-box-alt mr-10"></i> Proceed To CheckOut</button>
+                                </div>
+                              <% } else { %>                               
+                                <div class="table-responsive">
+                                    <table class="table">            
+                                        <tbody>
+                                          
+                                            <tr>
+                                                <td class="cart_total_label">Cart Subtotal</td>
+                                                <td class="cart_total_amount" ><span class="font-lg fw-900 text-brand">₹<%= cart.totalPrice %></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="cart_total_label">Shipping</td>
+                                                <td class=""> <i class="ti-gift mr-5"></i> Free Shipping</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="cart_total_label">Total</td>
+                                                <td class="cart_total_amount" ><strong><span class="font-xl fw-900 text-brand">₹<%= cart.totalPrice %></span></strong></td>
+                                            </tr>                                       
+                                        </tbody>                         
+                                    </table>
+                                    <a href="/checkout" class="btn" onclick="return checkStock()"> <i class="fi-rs-box-alt mr-10"></i> Proceed To CheckOut</a>
+                                </div>
+                            <% } %>
+                             
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+function checkStock() {
+    // Get all product rows in the cart
+    var productRows = document.querySelectorAll('.table.shopping-summery tbody tr');
+
+    // Check each product row for out-of-stock status
+    for (var i = 0; i < productRows.length; i++) {
+        var productRow = productRows[i];
+        var outOfStockSpan = productRow.querySelector('.product-des span');
+        if (outOfStockSpan && outOfStockSpan.innerText === 'Currently Out Of Stock') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Out of Stock',
+                text: 'Some products are out of stock. Please remove them from your cart before proceeding to checkout.',
+                confirmButtonText: 'OK'
+            });
+            return false; // Prevent default action
+        }
+    }
+
+    return true; // Proceed to checkout
+}
+
+
+
+     document.addEventListener('DOMContentLoaded', function() {
+        const updateQuantity = (userId, productId, newQty) => {
+            
+            // Sending AJAX request to update quantity in the database          
+            fetch('/updateCartQuantity', {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ productId, quantity: newQty, userId })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to update quantity');
+                }
+                
+                return response.json();
+            })
+            .then(data => {
+                const totalPrice = data.totalPrice;
+                const subTotal = data.subTotal;
+                console.log(totalPrice);
+                console.log(subTotal);
+                if (data.success) {
+                    document.querySelector(`.qty-val[data-product-id="${productId}"]`).textContent = newQty;
+                    document.querySelector(`.sub-total[data-product-id="${productId}"]`).textContent = subTotal;
+                    // Update total price
+                    document.querySelectorAll('.cart_total_amount span').forEach(span => {
+                    span.textContent = `₹${totalPrice}`;
+                    });
+
+                } else {
+                    throw new Error('Failed to update quantity');
+                }
+            })
+            .catch(error => {
+                console.error(error);
+               
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Failed to update quantity'
+                });
+            });
+        };
+
+        
+        document.querySelectorAll('.qty-up, .qty-down').forEach(button => {
+            button.addEventListener('click', function() {
+                const productId = this.getAttribute('data-product-id');
+                const $qtyInput = document.querySelector(`.qty-val[data-product-id="${productId}"]`);
+                const userId = this.getAttribute('data-user-id');
+                const productStock = parseInt(this.getAttribute('data-product-stock'))
+                const customerLimit = 10
+                console.log(`this is my ${productStock}`);
+                let newQty = parseInt($qtyInput.textContent);
+                
+                // Check if the new quantity exceeds the customer limit (10) 
+                if (this.classList.contains('qty-up') && newQty >= customerLimit) {
+                   
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'OOPS...',
+                    text: `Maximum limit for per customer is ${customerLimit} `
+                    });
+                    return;
+                }
+                if (this.classList.contains('qty-up') && newQty >= productStock) {
+                   
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'OOPS...',
+                    text: `This Product has only ${productStock} items in stock`
+                    });
+                    return;
+                }
+                if (this.classList.contains('qty-up')) {   
+                    newQty++;
+                } else if (newQty > 1) {
+                    newQty--;
+                } else {
+                    return;
+                }
+
+                updateQuantity(userId, productId, newQty);
+            });
+        });
+    });
+
+
+//Product removal---------------------------------
+function removeProduct(productid) {
+
+    Swal.fire({
+
+    title: 'Are you sure?',
+    text: 'Are you sure you want to delete this product?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'No, keep it'
+
+    }).then((result) => {
+
+                if (result.isConfirmed) {
+
+                    $.ajax({
+                            url: `/removeProductFromCart?id=${productid}`,
+                            method: 'PATCH',
+                            contentType: 'application/json',
+                            success: function(data){
+                                console.log(data.success)
+                                if (data.success===true) {
+                                
+                                    const divToDelete = document.getElementById(productid)
+                                    if (divToDelete) {
+                                    divToDelete.remove() 
+                                    }
+                                    location.reload()
+                                
+                                    swal("product removed!", {
+                                    icon: "success",
+                                    })
+                                } else {
+                                console.error('Removing failed');
+                                }
+                            },
+                            error: function(error) {
+                                
+                                swal("Oops!", "Failed to remove the product. Please try again.", "error");
+                                console.error('AJAX error:', error);
+                            }
+                        });
+
+
+                }else if (result.dismiss === Swal.DismissReason.cancel) {
+                // User clicked the cancel button
+                Swal.fire('Cancelled', 'Your product is safe :)', 'info');
+                }
+    });
+}
+
+</script>
+<%- include ('../partials/userFooter') %>

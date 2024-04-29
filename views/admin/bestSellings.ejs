@@ -1,0 +1,142 @@
+<%- include ('../partials/adminHeader') %>
+
+<section class="content-main">
+  <div class="content-header">
+      <h2 class="content-title">Best Selling Products</h2>
+    
+  </div> 
+  <div class="card mb-4">
+     
+      <div class="card-body">
+          <div class="table-responsive">
+              <table class="table table-hover">
+                  <thead>
+                      <tr>
+                          <th>Index</th>
+                          <th >Product</th>
+                          <th class="text-center">Sales Count</th>
+                          <th>Price</th>                        
+                          <th>Brand</th>
+                         
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <% BSP.forEach((doc,index)=> { %>
+                      <tr>  
+                          <td width="8%"><%= index + 1 %></td>                     
+                          <td width="30%" >
+                              <a href="#" class="itemside">
+                                  <div class="left">
+                                      <img src="/public/photos/productImages/<%= doc.productDetails.productImage[0]%>" class="img-sm img-avatar" alt="Userpic">
+                                  </div>
+                                  <div class="info pl-3">
+                                      <h6 class="mb-0 title"><%= doc.productDetails.productName %></h6>                                     
+                                  </div>
+                              </a>
+                          </td>
+                          <td class="text-center"><%= doc.totalQuantity %></td>
+                          <td width="20%"><%= doc.productDetails.regularPrice %></td>                
+                          <td><%= doc.productDetails.brand %></td>
+                          
+                      </tr>
+                  <% }) %>
+                  </tbody>
+              </table> <!-- table-responsive.// -->
+          </div>
+      </div> <!-- card-body end// -->
+  </div> <!-- card end// -->
+</section> <!-- content-main end// -->
+
+<section class="content-main">
+  <div class="content-header">
+      <h2 class="content-title">Best Selling Categories</h2>
+    
+  </div> 
+  <div class="card mb-4">
+      
+      <div class="card-body">
+          <div class="table-responsive">
+              <table class="table table-hover">
+                  <thead>
+                      <tr>
+                          <th>Index</th>
+                          <th>Category Name</th>
+                          <th>Category Id</th>
+                          <th class="text-center">Sales Count</th>
+                                              
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <% BSC.forEach((doc,index)=> { %> 
+                      <tr>
+                          <td width="8%"><%= index + 1 %></td>
+                          <td width="40%">                                
+                                  <div class="info pl-3">
+                                      <h6 class="mb-0 title"><%= doc.categoryName %></h6>                                  
+                                  </div>                        
+                          </td>
+                          <td><%= doc.categoryId.toString().substring(doc.categoryId.toString().length - 7) %></td>
+                          
+                          <td class="text-center"><%= doc.totalQuantity %></td>                        
+                      </tr>
+                    <% }) %>
+                  </tbody>
+              </table> <!-- table-responsive.// -->
+          </div>
+      </div> <!-- card-body end// -->
+  </div> <!-- card end// -->
+</section> <!-- content-main end// -->
+
+<section class="content-main">
+  <div class="content-header">
+      <h2 class="content-title">Best Selling Brands</h2>   
+  </div> 
+  <div class="row">
+    <div class="col-md-6">
+  <div class="card mb-4">
+     
+      <div class="card-body">
+          <div class="table-responsive">
+              <table class="table table-hover">
+                  <thead>
+                      <tr>
+                          <th>Index</th>
+                          <th class="text-center">Brand Name</th>
+                          <th class="text-center">Sales Count</th>                          
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <% BSB.forEach((doc,index)=> { %> 
+                      <tr>
+                          <td width="5%"><%= index + 1 %></td>
+                          <td width="20%">                             
+                                  <div class="text-center">
+                                      <h6 class="mb-0 title"><%= doc.brandName %></h6>                                    
+                                  </div>                           
+                          </td>                         
+                          <td width="20%" class="text-center"><%= doc.totalQuantity %></td>                         
+                      </tr>
+                  <% }) %>
+                  </tbody>
+              </table> <!-- table-responsive.// -->
+          </div>
+      </div> <!-- card-body end// -->
+  </div> <!-- card end// -->
+  </div>
+  </div>
+</section> <!-- content-main end// -->
+
+<footer class="main-footer font-xs">
+  <div class="row pb-30 pt-15">
+      <div class="col-sm-6">
+          <script>
+          document.write(new Date().getFullYear())
+          </script> ©, Evara - HTML Ecommerce Template .
+      </div>
+      <div class="col-sm-6">
+          <div class="text-sm-end">
+              All rights reserved
+          </div>
+      </div>
+  </div>
+</footer>

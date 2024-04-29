@@ -1,0 +1,93 @@
+<%- include ('../partials/adminHeader') %>
+<section class="content-main">
+  <div class="content-header">
+      <div>
+          <h2 class="content-title card-title">Order Management</h2>
+          
+      </div>
+      
+  </div>
+  <div class="card mb-4">
+      <header class="card-header">
+          <div class="row gx-3">
+              
+              <!-- <div class="col-lg-2 col-6 col-md-3">
+                  <select class="form-select">
+                      <option>Status</option>
+                      <option>Active</option>
+                      <option>Disabled</option>
+                      <option>Show all</option>
+                  </select>
+              </div> -->
+              
+          </div>
+      </header> <!-- card-header end// -->
+      <div class="card-body">
+          <div class="table-responsive">
+              <table class="table table-hover">
+                  <thead>
+                      <tr>
+                          <th>Index </th>
+                          <th>Order Id</th>
+                          <th scope="col">User</th>
+                          <th scope="col">Email</th>
+                          <th scope="col">Total Price</th>
+                          <th scope="col">Date</th>
+                          <th scope="col" class="text-end"> Action </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <% orders.forEach((doc,index)=> { %>
+                      
+                      <tr>
+                          <td width="8%"><%= index + 1 %></td>
+                          <td><%= doc._id.toString().substring(doc._id.toString().length - 5) %></td>
+                          <td><b><%= doc.userID.name %></b></td>
+                          <td><template class="__cf_email__" data-cfemail="aec3cfdcd8c7c0eecbd6cfc3dec2cb80cdc1c3">[email&#160;protected]</template><%= doc.userID.email %></td>
+                          <td>₹ <%= doc.totalPrice.toFixed(2) %></td>
+                          <td><%= doc.orderDate.toDateString() %></td>
+                          <td class="text-end">
+                              <a href="/orderDetail?orderID=<%= doc._id %>&userID=<%= doc.userID._id %>" class="btn btn-md rounded font-sm">Detail</a>
+                        
+                          </td>
+                      </tr>
+                  <% })%>
+                  </tbody>
+              </table>
+          </div> <!-- table-responsive //end -->
+      </div> <!-- card-body end// -->
+  </div> <!-- card end// -->
+  
+</section> <!-- content-main end// -->
+
+<footer class="main-footer font-xs">
+  <div class="row pb-30 pt-15">
+      <div class="col-sm-6">
+          <script>
+          document.write(new Date().getFullYear())
+          </script> ©, Evara - HTML Ecommerce Template .
+      </div>
+      <div class="col-sm-6">
+          <div class="text-sm-end">
+              All rights reserved
+          </div>
+      </div>
+  </div>
+</footer>
+</main>
+<script src="/public/admin/assets/js/vendors/jquery-3.6.0.min.js"></script>
+<script src="/public/admin/assets/js/vendors/bootstrap.bundle.min.js"></script>
+<script src="/public/admin/assets/js/vendors/select2.min.js"></script>
+<script src="/public/admin/assets/js/vendors/perfect-scrollbar.js"></script>
+<script src="/public/admin/assets/js/vendors/jquery.fullscreen.min.js"></script>
+<script src="/public/admin/assets/js/vendors/chart.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- Main Script -->
+<script src="/public/admin/assets/js/main.js" type="text/javascript"></script>
+<script src="/public/admin/assets/js/custom-chart.js" type="text/javascript"></script>
+
+</body>
+  
+  
+<!-- Mirrored from wp.alithemes.com/html/evara/evara-backend/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Aug 2021 15:32:57 GMT -->
+</html>

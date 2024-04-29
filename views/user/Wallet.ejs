@@ -1,0 +1,200 @@
+<%- include('../partials/userHeader') %>
+<style>
+  /* Add your custom CSS styles here */
+  .content-main {
+      border-left: 1px solid #e5e5e5;
+      border-right: 1px solid #e5e5e5;
+      padding: 15px 180px; /* Optional: Add padding for spacing */
+  }
+</style>
+
+<div class="page-header breadcrumb-wrap">
+  <div class="container">
+      <div class="breadcrumb">
+          <a href="/" rel="nofollow">Home</a>
+          <span></span> Profile
+          <span></span> Wallet
+      </div>
+ </div>
+</div>
+
+<section class="content-main">
+
+  <% if(user.referalCode){ %>
+  <div>
+    <h3 class="text-center text-brand">Refer new members and Earn Rs.1000 bonus cash instantly in your Wallet </h3>
+    <br>
+    <h4 class="text-center text-muted"> Referal Code : <%= user.referalCode %></h4>
+  </div>
+  <% } %>
+  <br>
+  <div class="content-header mb-30">
+      <h2 class="content-title">Wallet History</h2>
+  </div>
+  <% if (successMessage  && successMessage.length > 0) { %>
+    <div id="successMessage" class="alert alert-success">
+        <%= successMessage %>
+    </div>
+    <script>
+        setTimeout(function() {
+            document.getElementById('successMessage').style.display = 'none';
+        }, 5000);
+    </script>
+  <% } %>
+  <div class="card">
+      <div class="card-body">
+          <div class="row">
+            <aside class="col-lg-5">
+              <div class="box bg-light" style="min-height:80%">
+                <form id="depositForm" action="/deposit" method="POST">
+                  <h3 class="mt-14 text-center">My Wallet</h3>
+                  <hr>
+                  <ul class="user-details" >
+                    <% if (wallet) { %>
+                      <li> <h3 class="text-brand">Balance:&nbsp;<%= wallet.balance %>&nbsp;.Rs</h3></li>
+                    <% } else { %>
+                      <li><h4 class=" text-muted" >No wallet</h4></li>
+                    <% } %>
+                                                                         
+                  </ul>
+                  <br>
+                  <label for="amount">Deposit Amount:</label>
+                  <input type="number" placeholder="Enter amount"  id="amount" name="amount" required>
+                  <span id="amountErrorMessage" style="display: none; color: red;">Please enter a valid number which is greater than zero</span>
+                  <hr>
+                  <button type="submit" class="btn btn-light">Deposit</button>
+                </form>  
+              </div>
+          </aside> <!-- col end// -->
+              <div class="col-lg-6">
+                <h3 class="mb-20 text-center">Transactions</h3>
+                  <div class="table-responsive">
+                    
+                      <table class="table table-hover">
+                          <thead>
+                              <tr>
+                                  <th>Date</th>
+                                  <th>Status</th>
+                                  <th>OrderID</th>
+                                  <th>Amount</th>
+                                  <th>Credit/Debit</th>                                
+                              </tr>
+                          </thead>
+                          <tbody>
+                            <% if (wallet) { %>
+                              
+                                <% wallet.transactions.forEach((doc,idx)=> { %>
+                              <tr>
+                                  <td><b><%= doc.date %></b></td>
+                                  <td><%= doc.status %></td>
+
+                                  <% if (doc.orderId) { %>
+                                    <td><%= doc.orderId.toString().substring(doc.orderId.toString().length - 5) %></td>
+                                  <% } else { %>
+
+                                    <td>NIL</td>
+
+                                  <% } %>
+
+                                  <td><%= doc.amount %></td>                                
+                                  <td><%= doc.type %></td>                               
+                              </tr>
+
+                              <% }) %>
+
+                              <% }else { %>
+
+                               <tr  >
+                               <h4 class=" text-muted">No Transactions</h4>
+                               </tr> 
+                               
+                              <% } %>                         
+                          </tbody>
+                      </table>
+                  </div> <!-- table-responsive.// -->
+
+
+              </div> <!-- col end// --> 
+             
+          </div> <!-- row end// -->
+      </div> <!-- card-body // -->
+  </div> <!-- card end// -->
+ 
+</section>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+function isValidNumber(value) {
+    return /^\d*\.?\d+$/.test(value) && parseFloat(value) > 0;
+}
+
+
+
+document.getElementById('depositForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const amount = formData.get('amount');
+    console.log(`amount:${amount}`);
+
+    if ( isValidNumber(amount) ){
+
+        // Perform operations specific to Razorpay payment method
+        const user = {
+          name: "<%= user.name %>",
+          email: "<%= user.email %>",
+          phone: "<%= user.mobile %>",
+        };
+
+              
+        const amountText = amount.trim() //trim whitespace
+        const finalAmount = parseFloat(amountText);
+
+
+        
+  var options = {
+    key: "rzp_test_mOjDfs0o2kYFMT",
+    amount: finalAmount * 100,
+    currency: "INR",
+    name: "Vision Vibe",
+    description: "Purchase Description",
+    image: "",
+    
+    handler: function (response) {
+        console.log(response);
+        console.log("Payment successful");
+        
+        // Submit the form after operations
+        e.target.submit();         
+    },
+
+    prefill: {
+      name: user.name,
+      email: user.email,
+      contact: user.phone,
+    },
+    theme: {
+      color: "#3399cc",
+    },
+  };
+
+   var rzp = new Razorpay(options);
+
+   rzp.open();
+
+
+  
+} else {
+
+        // Show the error message
+        const errorMessage = document.getElementById('amountErrorMessage');
+        errorMessage.style.display = 'block';
+
+        // Optionally, you can use setTimeout to hide the message after a few seconds
+        setTimeout(() => {
+            errorMessage.style.display = 'none';
+        }, 3000); // Hide the message after 3 seconds (3000 milliseconds)
+    }
+})
+</script>
+<%- include ('../partials/userFooter') %>
