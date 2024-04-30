@@ -121,6 +121,9 @@ document.addEventListener('DOMContentLoaded', function() {
       doc.text('Discount: ' + order.discount, 10, yPos);
       yPos += 10;
 
+      doc.text('Tax IGST: ' + order.totalPrice*0.04, 10, yPos);
+      yPos += 10;
+
       // Shipping address
       doc.text('Shipping Address:', 10, yPos);
       yPos += 10;
