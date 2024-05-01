@@ -51,7 +51,7 @@ router.delete("/removeWishList",isUser,userController.removeWishList)
 
 //CART SIDE------------------------------------------------------
 router.get("/cartpage",isUser,cartController.loadCartPage)
-router.post("/addToCart",isUser,cartController.addToCart)
+router.post("/addToCart",cartController.addToCart)
 router.patch('/updateCartQuantity',isUser,cartController.quantityUpdate)
 router.patch('/removeProductFromCart',isUser,cartController.removeProduct)
 

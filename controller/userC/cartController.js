@@ -36,9 +36,13 @@ const addToCart = async (req,res)=> {
 
 try{
 
+  if(!req.session.user){
+    
+    return res.status(400).json({ message: 'Login required' });
+  }
 
-
-    const userId = req.session.user._id
+  const userId = req.session.user._id
+ 
   const {productId} = req.query;
   
   const product = await productModel.findById(productId)  
