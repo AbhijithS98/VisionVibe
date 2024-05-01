@@ -10,7 +10,7 @@ const shortid=require('shortid')
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: "https://visionvibe.hpc.tw/google/callback",
+  callbackURL: "http://localhost:3000/google/callback",
   passReqToCallback: true
 },
 
