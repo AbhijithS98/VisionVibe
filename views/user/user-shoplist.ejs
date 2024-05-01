@@ -9,9 +9,9 @@
         </div>
       </div>
       
-   
+  
     <div class="row">
-        <div class="col-sm-2" style="position: absolute; left: 8px;" >
+        <div class="col-sm-2" style="position: absolute; left: 2px;" >
             <!-- Category filter form -->
             
                 <div class="widget-category mb-30" style="border: 1px solid rgb(255, 255, 255);">
@@ -30,7 +30,7 @@
                 </div>                        
         </div>     
     </div>
-    
+
       
             
     <div class="dropdown mt-10" style="position: absolute; right: 80px;" >
@@ -50,10 +50,11 @@
       <!--End nav-tabs-->
       <div class="tab-content wow fadeIn animated" id="myTabContent">
           <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
-              <div class="row product-grid-4">
+              <div class="row product-grid-2">
              <% data.forEach((doc,idx)=> { %>
                <% if(!doc.isBlocked  && doc.category.islisted) { %>
                   <div class="col-lg-3 col-md-4 col-12 col-sm-6">
+                  
                       <div class="product-cart-wrap mb-30">
                           <div class="product-img-action-wrap">
                               <div class="product-img product-img-zoom">
