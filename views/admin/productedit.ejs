@@ -34,7 +34,7 @@
                         <div class="col-lg-4">
                             <div class="mb-4">
                                 <label class="form-label">Regular price</label>
-                                <input placeholder="$"  id="regularPriceX" value="<%= product.regularPrice %>" name="regularPrice" type="text" class="form-control border">
+                                <input placeholder="$"  id="regularPriceX" value="<%= product.regularPrice %>" name="regularPrice" type="text" class="form-control border" required pattern="[0-9]+">
                                 <div id="regularPrice-error" class="error-message"></div>
                 
                             </div>
@@ -43,7 +43,7 @@
                             <div class="mb-4">
                                 <label class="form-label">Discount (Rs)</label>
                                 <div class="input-group">
-                                    <input placeholder="$" id="discountX" name="discount" value="<%= product.discount %>" type="text" class="form-control border">
+                                    <input placeholder="$" id="discountX" name="discount" value="<%= product.discount %>" type="text" class="form-control border" required pattern="[0-9]+">
                                     <div class="input-group-append">
                                         <span class="input-group-text" style="background-color: #fff; border: none; border-left: 1px solid #ced4da;"></span>
                                     </div>
@@ -61,7 +61,7 @@
                         <div class="col-lg-4">
                             <div class="mb-4">
                                 <label class="form-label">Stock</label>
-                                <input placeholder="" id="inStockX" value="<%= product.inStock %>" name="inStock" type="text" class="form-control border">
+                                <input placeholder="" id="inStockX" value="<%= product.inStock %>" name="inStock" type="text" class="form-control border" required pattern="[0-9]+">
                                 <div id="stock-error" class="error-message"></div>
                             </div>
                         </div>
@@ -111,6 +111,8 @@
                 </div>
 
              </form>
+
+
            </div>
         </div>
        </div>
