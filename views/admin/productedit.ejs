@@ -92,7 +92,7 @@
                       <div id="addedImagesContainer" class="col-md-6" style="display: flex;">
                           <% for (let i = 0; i < product.productImage.length; i++) { %>
                               <div class="mb-4" style="display: inline-block;">
-                                  <img class="rounded" style="width: 50px; height: 40px;" src="/public/photos/productImages/<%= product.productImage[i] %>" alt="image" data-filename="<%= product.productImage[i] %>" id="imgCount">
+                                  <img class="rounded" style="width: 50px; height: 40px;" src="/public/photos/productImages/<%= product.productImage[i] %>" alt="image" data-filename="<%= product.productImage[i] %>" id="imgCount" >
                                   <span class="delete-icon" onclick="deleteImage('<%= product._id %>', '<%= i %>')">❌</span>
                               </div>
                           <% } %>
@@ -101,7 +101,7 @@
                       <div class="card-body">
                           <div class="input-upload">
                               <img src="assets/imgs/theme/upload.svg" alt="">
-                              <input class="form-control" name="images" id="imageInput" type="file" multiple>
+                              <input class="form-control" name="images" id="imageInput" type="file" accept=".jpg, .jpeg, .png">
                               <div id="image-error" class="error-message"></div>
                           </div>
                       </div>

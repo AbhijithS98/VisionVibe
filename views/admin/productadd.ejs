@@ -243,6 +243,9 @@ function validateAndSubmit() {
     if (inStock.trim() === '' || isNaN(inStock)) {
         displayErrorMessage("stock-error", "Please enter a valid stock quantity");
         isValid = false;
+    }else if (inStock < 0 ) {
+        displayErrorMessage("stock-error", "stock must be a valid positive number");
+        isValid = false;
     }
 
     if ( regularPrice <= 0) {
@@ -256,18 +259,30 @@ function validateAndSubmit() {
      if (isNaN(discount) ) {
         displayErrorMessage("discount-error", "discount must be in numbers");
         isValid = false;
-    }else if (discount <= 0 ) {
+    }else if (discount < 0 ) {
         displayErrorMessage("discount-error", "discount must be a valid positive number");
-        isValid = false;
-    }else if(discount >=100){
-        displayErrorMessage("discount-error", "discount must be lessthan 100 ");
         isValid = false;
     }
 
     if (images.length === 0) {
         displayErrorMessage("fileerrormessage", "Please choose at least one image ");     
         isValid = false;
-    }
+    }else {
+        const imagesArray = Array.from(images);
+      
+        for (let i = 0; i < imagesArray.length; i++) {
+              const file = imagesArray[i];
+              
+      
+              // Check if the file is an image (only allow image/jpeg, image/png, and image/gif)
+              if (!(file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/gif')) {
+                  
+                displayErrorMessage("fileerrormessage", "Please upload images in JPEG, PNG, or GIF format only.");
+                isValid = false;
+                break;
+              }
+        }
+    }    
 
 
     return isValid;
