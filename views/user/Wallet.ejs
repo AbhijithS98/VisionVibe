@@ -124,6 +124,9 @@
 
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
+
+const RPAY_KEY = "<%= RPAY_KEY %>";
+
 function isValidNumber(value) {
     return /^\d*\.?\d+$/.test(value) && parseFloat(value) > 0;
 }
@@ -153,7 +156,7 @@ document.getElementById('depositForm').addEventListener('submit', async (e) => {
 
         
   var options = {
-    key: "rzp_test_mOjDfs0o2kYFMT",
+    key: RPAY_KEY,
     amount: finalAmount * 100,
     currency: "INR",
     name: "Vision Vibe",

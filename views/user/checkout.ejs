@@ -306,6 +306,8 @@
 
 
 const balance= ' <%=  wallet ? wallet.balance : 0; %>'
+const RPAY_KEY = "<%= RPAY_KEY %>";
+console.log("RPAY_KEY:", RPAY_KEY);
 
 document.getElementById('orderForm').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -368,7 +370,7 @@ document.getElementById('orderForm').addEventListener('submit', async (e) => {
 
         
   var options = {
-    key: "rzp_test_mOjDfs0o2kYFMT",
+    key: RPAY_KEY,
     amount: totalPrice * 100,
     currency: "INR",
     name: "Vision Vibe",
@@ -567,7 +569,7 @@ console.log("entered eveen tlistener");
 
         
   var options = {
-    key: "rzp_test_mOjDfs0o2kYFMT",
+    key: RPAY_KEY,
     amount: finalAmount * 100,
     currency: "INR",
     name: "Vision Vibe",

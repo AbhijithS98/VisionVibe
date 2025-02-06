@@ -42,6 +42,12 @@ app.use("/public", express.static(path.join(__dirname, "/public")));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+// Middleware to make env variables available in all views
+app.use((req, res, next) => {
+  res.locals.RPAY_KEY = process.env.RAZORPAY_ID_KEY; 
+  next();
+});
+
 //requiring routerfile
 app.use("/", userAuthRoute);
 app.use("/", adminAuthRoute);
