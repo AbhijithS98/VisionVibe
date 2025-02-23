@@ -271,7 +271,7 @@
 
 <script>
 
-
+const RPAY_KEY = "<%= RPAY_KEY %>";
 
 
 function cancelOrder(orderId, itemId) {
@@ -459,7 +459,7 @@ document.getElementById('retryPaymentBtn').addEventListener('click', function() 
 
 
         var options = {
-            key: "rzp_test_mOjDfs0o2kYFMT",
+            key: RPAY_KEY,
             amount: TotalPrice * 100,
             currency: "INR",
             name: "Vision Vibe",
